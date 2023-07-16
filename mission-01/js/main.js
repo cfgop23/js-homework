@@ -59,6 +59,7 @@ const pwCheckValid = (node) => {
 const moveToPage = () => {
   const isEmail = emailCheckValid("#userEmail");
   const isPw = pwCheckValid("#userPassword");
+
   if (isEmail && isPw) {
     window.location.href = "welcome.html";
   } else {
