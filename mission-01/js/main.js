@@ -56,15 +56,94 @@ const pwCheckValid = (node) => {
   }
 };
 
-const moveToPage = () => {
+const handleLogin = (e) => {
+  e.preventDefault(); // form submit 막아주는 함수
+
+  const emailInput = getNode("#userEmail");
+  const pwInput = getNode("#userPassword");
+
   const isEmail = emailCheckValid("#userEmail");
   const isPw = pwCheckValid("#userPassword");
 
   if (isEmail && isPw) {
-    window.location.href = "welcome.html";
+    try {
+      const getUserId = user.id;
+      const getUserPw = user.pw;
+
+      if (emailInput.value === getUserId && pwInput.value === getUserPw) {
+        window.location.href = "welcome.html";
+      } else {
+        alert("정확한 아이디와 비밀번호를 입력해 주세요.");
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   } else {
     return;
   }
 };
 
-getNode(".btn-login").addEventListener("click", moveToPage);
+getNode(".btn-login").addEventListener("click", handleLogin);
+
+//
+//
+// const emailInput = document.querySelector("#userEmail");
+// const pwInput = document.querySelector("#userPassword");
+// const loginButton = document.querySelector(".btn-login");
+
+// let emailPass = false;
+// let pwPass = false;
+
+// // 태그가 가지고있는 고유한 능력 x
+
+// function handleCheckEmail() {
+//   const value = this.value;
+
+//   if (emailReg(value)) {
+//     this.classList.remove("is--invalid");
+//     emailPass = true;
+//   } else {
+//     this.classList.add("is--invalid");
+//     emailPass = false;
+//   }
+// }
+
+// function handleCheckPw() {
+//   const value = this.value;
+
+//   if (pwReg(value)) {
+//     this.classList.remove("is--invalid");
+//     pwPass = true;
+//   } else {
+//     this.classList.add("is--invalid");
+//     pwPass = false;
+//   }
+// }
+
+// function handleLogin(e) {
+//   e.preventDefault();
+
+//   if (emailPass && pwPass) {
+//     try {
+//       const id = emailInput.value;
+//       const pw = pwInput.value;
+
+//       const getUserId = user.id;
+//       const getUserPw = user.pw;
+
+//       if (id === getUserId && pw === getUserPw) {
+//         window.location.href = "welcome.html";
+//       } else {
+//         console.log("정확한 아이디와 비밀번호를 입력해 주세요.");
+//       }
+//     } catch (e) {
+//       alert(e.message);
+//     }
+//   } else {
+//     console.log("정확한 아이디와 비밀번호를 입력해 주세요.");
+//   }
+// }
+
+// emailInput.addEventListener("input", handleCheckEmail);
+// pwInput.addEventListener("input", handleCheckPw);
+// loginButton.addEventListener("click", handleLogin);
