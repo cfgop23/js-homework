@@ -18,6 +18,20 @@ nav.addEventListener("click", handleChange);
   if (!target) return;
   ```
 
+- 선택한 항목에 is-active 활성화를 위한 코드
+  ```js
+  const list = document.querySelectorAll(".nav li");
+  const listArr = [...list];
+  // li태그들을 가져와 listArr 상수에 배열로 할당
+  
+  listArr.forEach((el) => el.classList.remove("is-active"));
+  // listArr 배열에서 is-active 클래스를 모두 삭제
+  
+  target.classList.add("is-active");
+  // 선택한 리스트 항목에 is-active 클래스 추가
+  
+  ```
+  
 ---
 
 #### 2. nav 클릭시 배경 색상 변경
@@ -52,6 +66,9 @@ visual.setAttribute("alt", data[index - 1].alt);
 #### 4. 텍스트 변경
 
 ```js
+const nickName = document.querySelector(".nickName");
+//  nicName 클래스를 가진 h1태그를 가져오기 위한 코드
+
 nickName.textContent = data[index - 1].name;
 // data 배열의 name 속성 값을 nickname 클래스 텍스트 변경
 ```
