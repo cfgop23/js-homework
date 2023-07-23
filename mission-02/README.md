@@ -2,7 +2,7 @@
 
 ---
 
-###### 1. 클릭 이벤트 활성화
+#### 1. 클릭 이벤트 활성화
 
 ```js
 const nav = document.querySelector(".nav");
@@ -20,7 +20,7 @@ nav.addEventListener("click", handleChange);
 
 ---
 
-###### 2. nav 클릭시 배경 색상 변경
+#### 2. nav 클릭시 배경 색상 변경
 
 ```js
 const index = target.getAttribute("data-index");
@@ -34,7 +34,7 @@ document.body.style.background = `linear-gradient(to bottom, ${
 
 ---
 
-###### 3. 이미지 변경
+#### 3. 이미지 변경
 
 ```js
 const visual = document.querySelector(".visual img");
@@ -49,7 +49,7 @@ visual.setAttribute("alt", data[index - 1].alt);
 
 ---
 
-###### 4. 텍스트 변경
+#### 4. 텍스트 변경
 
 ```js
 nickName.textContent = data[index - 1].name;
@@ -58,47 +58,47 @@ nickName.textContent = data[index - 1].name;
 
 ---
 
-###### 5. 함수 분리
+#### 5. 함수 분리
 
-    a. **setBgColor** 함수
+- ##### a. **setBgColor** 함수
 
-```js
-function setBgColor(colorA, colorB = "#000") {
-  if (!colorA)
-    throw new TypeError(
-      "setBgColor 함수의 첫번째 인자 colorA는 필수 입력값입니다."
-    );
+  ```js
+  function setBgColor(colorA, colorB = "#000") {
+    if (!colorA)
+      throw new TypeError(
+        "setBgColor 함수의 첫번째 인자 colorA는 필수 입력값입니다."
+      );
+  
+    document.body.style.background = `linear-gradient(to bottom, ${colorA}, ${colorB})`;
+  }
+  ```
 
-  document.body.style.background = `linear-gradient(to bottom, ${colorA}, ${colorB})`;
-}
-```
+- ##### b. **setImage** 함수
 
-    b. **setImage** 함수
+  ```js
+  function setImage(src, alt) {
+    if (typeof src !== "string" || typeof alt !== "string")
+      throw new TypeError("setImage 함수의 모든 인자는 'string' 타입입니다.");
+  
+    visual.setAttribute("src", src);
+    visual.setAttribute("alt", alt);
+  }
+  ```
 
-```js
-function setImage(src, alt) {
-  if (typeof src !== "string" || typeof alt !== "string")
-    throw new TypeError("setImage 함수의 모든 인자는 'string' 타입입니다.");
+- ##### c. **setNameText** 함수
 
-  visual.setAttribute("src", src);
-  visual.setAttribute("alt", alt);
-}
-```
-
-    c. **setNameText** 함수
-
-```js
-function setNameText(name) {
-  if (typeof name !== "string")
-    throw new TypeError("setNameText 함수의 인자는 'string' 타입입니다.");
-
-  nickName.textContent = name;
-}
-```
+  ```js
+  function setNameText(name) {
+    if (typeof name !== "string")
+      throw new TypeError("setNameText 함수의 인자는 'string' 타입입니다.");
+  
+    nickName.textContent = name;
+  }
+  ```
 
 ---
 
-##### 완성된 코드
+#### 완성된 코드
 
 ```js
 const nav = document.querySelector(".nav");
